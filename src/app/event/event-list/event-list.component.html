@@ -1,0 +1,42 @@
+<h2>Список мероприятий</h2>
+<button
+class="btn btn-success"
+type="button"
+(click)="onAdd()"
+>Добовить мероприятие</button>
+<div class="col-xs-12">
+  <form (ngSubmit)="onFilter(f)" #f="ngForm">
+  <div class="row">
+    <div class="col-sm-4 form-group">
+      <label for="startDate">Начало мероприятия</label>
+      <input type="text" data-date-format="yyyy-mm-dd" id="startDate" class="form-control" name="sDate" [ngModel]="filter.sDate" required>
+    </div>
+    <div class="col-sm-4 form-group">
+      <label for="endDate">Завершение мероприятия</label>
+      <input type="text" data-date-format="yyyy-mm-dd" id="endDate" class="form-control" name="eDate" [ngModel]="filter.eDate" required>
+    </div>
+    <br>
+    <button
+      class="btn btn-primary"
+      type="submit"
+      
+      >Отфильтровать</button>
+    <button
+      class="btn btn-danger"
+      type="buttom"
+      (click)="offFilter()">Снять фильтр</button>
+  </div>
+  </form>
+</div>
+
+
+<div class="row">
+  <div class="col-xs-12">
+    <app-event-item
+      *ngFor="let eventEl of events; let i = index"
+      [event]="eventEl"
+      [index]="i"></app-event-item>
+  </div>
+</div>
+
+

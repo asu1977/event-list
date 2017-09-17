@@ -1,0 +1,21 @@
+<a style="cursor: pointer" class="list-group-item">
+  <div class="row">
+    <div class="col-xs-12 group">
+      <div class="col-sm-3 form-group">
+        {{ event.startDate | date: 'yyyy-MM-dd' }} - {{ event.endDate | date: 'yyyy-MM-dd'}}
+      </div>
+      <div class="col-sm-7 form-group">
+        {{ event.name }}
+      </div>
+      <button
+        class="btn btn-danger"
+        type="button"
+        (click)="onDelete()">Delete</button>
+      <button
+        class="btn btn-success"
+        type="submit"
+        (click)="onEditEvent(index)"
+        >Edit</button>
+    </div>
+  </div>
+</a>

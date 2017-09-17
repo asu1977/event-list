@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-xs-12">
+      <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <b>Редактирование мероприятия</b>
+          
+          <div class="row">
+            <div class="col-sm-5 form-group">
+              <label for="startDate">Начало мероприятия</label>
+              <input type="text" data-date-format="yyyy-mm-dd" id="startDate" class="form-control" name="startDate" [(ngModel)]="editedEvent.startDate" required (change)="isValid(f)">
+            </div>
+            <div class="col-sm-5 form-group">
+              <label for="endDate">Завершение мероприятия</label>
+              <input type="text" data-date-format="yyyy-mm-dd" id="endDate" class="form-control" name="endDate" [(ngModel)]="editedEvent.endDate" required (change)="isValid(f)">
+              <small *ngIf="inValidEvent" class="text-danger">
+                  Дата окончания мероприятия не может быть меньше даты начала.
+              </small>
+            </div>
+            <div class="col-sm-5 form-group">
+              <label for="name">Наименование</label>
+              <input type="text" id="name" class="form-control" name="name" [(ngModel)]="editedEvent.name" required minlength="5" #name="ngModel" pattern="[а-яА-Яa-zA-Z0-9]+">
+              <small *ngIf="name.hasError('pattern') || name.hasError('minlength')" class="text-danger">
+                Наименование мероприятия меньше 5 символов или содержит не используемые символы.
+              </small>
+            </div>
+  
+            <div class="row">
+              <div class="col-sm-2 form-group">
+                <br>
+                <button
+                  class="btn btn-danger"
+                  type="button"
+                  (click)="onClear()"
+                >Сancel</button>
+                
+                <button
+                  class="btn btn-success"
+                  type="submit"
+                  [disabled]="!f.valid || inValidEvent"
+                  (click)="onClear()"
+                >Save</button>
+              </div>
+            </div>
+          </div>
+        
+      </form>
+    </div>
+  </div>
